@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Detalhes do Produto</title>
+    <style>
+        .produto-detalhes {
+            margin: 50px auto;
+            max-width: 800px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .produto-imagem {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .produto-nome {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .preco-original {
+            text-decoration: line-through;
+            color: red;
+            font-size: 1.25em;
+        }
+
+        .preco-desconto {
+            font-size: 1.75em;
+            color: green;
+            margin-top: 10px;
+        }
+
+        .parcelamento {
+            font-size: 1em;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .botao-voltar, .botao-carrinho {
+            background-color: #EF4D5C;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg" style="background-color: #EF4D5C;">
+        <div class="container-fluid">
+          <a class="navbar-brand">SITE DE VENDAS</a>
+        </div>
+    </nav>
+
+    <div class="container produto-detalhes" id="produto-detalhes"></div>
+
+    <script>
+        function obterIdProduto() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        }
+
+        async function buscarDetalhesProduto(id) {
+            const apiUrl = `http://localhost:3000/produtos/${id}`;
+            try {
+                const response = await fetch(apiUrl);
+                const produto = await response.json();
+                exibirDetalhesProduto(produto);
+            } catch (error) {
+                console.error("Erro ao buscar o produto:", error);
+            }
+        }
+
+        function exibirDetalhesProduto(produto) {
+            const produtoDetalhes = document.getElementById('produto-detalhes');
+            const produtoHTML = `
+                <img class="produto-imagem" src="${produto.imagem}" alt="${produto.nome}" width="200" height="100">
+                <div class="produto-nome">${produto.nome}</div>
+                <div class="preco-original">De: R$${produto.preco_original.toFixed(2)}</div>
+                <div class="preco-desconto">Por: R$${produto.preco_desconto.toFixed(2)}</div>
+                ${produto.parcelamento ? `<div class="parcelamento">${produto.parcelamento}</div>` : ''}
+                <button class="btn btn-success botao-carrinho" onclick="adicionarAoCarrinho(${produto.id})">Adicionar ao Carrinho</button>
+                <a href="index.html" class="btn btn-primary botao-voltar">Voltar às Ofertas</a>
+            `;
+            produtoDetalhes.innerHTML = produtoHTML;
+        }
+
+        function adicionarAoCarrinho(produtoId) {
+            const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            const apiUrl = `http://localhost:3000/produtos/${produtoId}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(produto => {
+                    carrinho.push(produto);
+                    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+                    window.location.href = 'carrinho.html'; 
+                })
+                .catch(error => console.error('Erro ao adicionar ao carrinho:', error));
+        }
+
+        const produtoId = obterIdProduto();
+        if (produtoId) {
+            buscarDetalhesProduto(produtoId);
+        } else {
+            document.getElementById('produto-detalhes').innerHTML = '<p>Produto não encontrado.</p>';
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
