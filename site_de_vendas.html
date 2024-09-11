@@ -1,0 +1,165 @@
+<DOCTYPE! html>
+<html lang= "pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <title> NAIL COSMETICS </title>
+    </head>
+
+    <style>
+
+        .center{
+            text-align: center;
+        }
+
+        .botao-redondo {
+            display: inline-block;
+            padding: 40px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 100%;
+            background-color: #EF4D5C; 
+            color: #050505; 
+            border: none; 
+            cursor: pointer;
+        }
+
+        .botao-redondo2 {
+            display: inline-block;
+            padding: 40px 40px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 100%;
+            background-color: #EF4D5C; 
+            color: #050505; 
+            border: none; 
+            cursor: pointer;
+        }
+
+        .fundo {
+            background-color: #EF4D5C;
+            color: white;
+        }
+
+        .botao-flutuante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000; 
+        }
+
+        .esquerda {
+            text-align: left;
+        }
+
+        .sobreposicao {
+            position: absolute;
+            right: 530px;
+            transform: translate(-1000%, -100%);
+        }
+
+        .sobreposicao2 {
+            position: absolute;
+            right: 5px;
+            padding: 0px 80px;
+            transform: translate(10%, 10%);
+
+        }
+
+        .produto {
+            width: 310px;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            display: inline-block;
+        }
+    </style>
+
+    <body>
+
+
+        <nav class="navbar navbar-expand-lg" style="background-color: #EF4D5C;">
+            <div class="container-fluid">
+              <a class="navbar-brand">SITE DE VENDAS</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="carrinho.html">Carrinho</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex sobreposicao2" role="search" action="preparadores.html" >
+                        <input class="form-control me-2" type="search" name="preparadores"placeholder="O que você está procurando ?" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit" style="background-color: white;">Pesquisa</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <br>
+
+        <div class="center">
+            <h3 class="font-weight-bold"> ESCOLHA A CATEGORIA DO PRODUTO </h3>
+        </div>
+
+        <div class="container mt-5">
+            <a class="btn fundo botao-redondo" href="preparadores.html"> Preparadores </a>
+            <a class="btn fundo botao-redondo2" href="preparadores.html"> Gels </a>
+            <a class="btn fundo botao-redondo2" href="preparadores.html"> Postiças </a>
+            <a class="btn fundo botao-redondo2" href="preparadores.html"> Brocas </a>
+            <a class="btn fundo botao-redondo2" href="preparadores.html"> KITS </a>
+            <a class="btn fundo botao-redondo" href="preparadores.html"> Esmaltes </a>
+            <a class="btn fundo botao-redondo2" href="preparadores.html"> Potes </a>
+            <a class="btn fundo botao-redondo2" href="preparadores.html"> Sachês </a>
+            <a class="btn fundo botao-redondo" href="preparadores.html"> Enfeites </a>
+        </div>
+
+        <br><br>
+
+        <div class="container mt-5">
+            <h2 class="text-center">OFERTAS</h2>
+            <div id="produtos-container" class="row">
+            </div>
+        </div>
+
+        <br><br><br>
+
+        <div class="container fundo center"> 
+            <h3> ESMALTES VÒLIA COSMÉTICOS </h3>
+        </div>
+
+        <div class="fundo">
+            <a href="kitgeis.html" class="btn">
+                <img src="https://acdn.mitiendanube.com/stores/001/913/441/products/esmalte_em_gel_volia_9g_vermelho_5905143_2_cf8a15194d5bfd40f3e44f2e36ec9b741-ba50f35f85a724b6e716705872602865-1024-1024.webp" width="420" height="400">
+            </a>
+
+            <a href="kitgeis.html" class="btn">
+                <img src="https://usinadasunhas.com.br/wp-content/uploads/2022/08/esmalte_baby_coral.jpg" width="420" height="400">
+            </a>
+
+            <a href="kitgeis.html" class="btn">
+                <img src="https://usinadasunhas.com.br/wp-content/uploads/2022/08/esmalte_lilas_ametista-1.jpg" width="420" height="400">
+            </a>
+        </div>
+
+        <br><br><br><br><br>
+
+        <div class="fundo">
+            <h2 class="font-weight-bold"> CONTATO </h2>
+            <h6 class="font-size"> (84) 99999-9999 <br> jessyck.santos@escolar.ifrn.edu.br </h6>
+        </div>
+
+        <footer class="mt-5 p-3 text-center bg-dark text-white">
+            &copy; 2023 Nail Cosmetics. Feito por Jessyck Aparecida 
+        </footer>
+
+        <script src="componente.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"> </script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" > </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"> </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"> </script>
+    </body>
+</html>
