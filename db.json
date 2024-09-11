@@ -1,0 +1,40 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Kit Refil Gel Base Volia 12g + Gel Classic Pink 14g + 2 potes",
+      "preco_original": 120.00,
+      "preco_desconto": 98.90,
+      "parcelamento": "3x de R$32,90 sem juros",
+      "imagem": "https://a-static.mlcdn.com.br/800x560/kit-refil-gel-base-volia-12g-gel-classic-pink-14g-2-potes/lukcosmeticosltda/3121/2910fa88622d345ab46e62fdfd5f8f5f.jpeg",
+      "categoria_id": 5
+    },
+    {
+      "id": 2,
+      "nome": "Esmaltes em Gel Volia 9g",
+      "preco_original": 50.00,
+      "preco_desconto": 40.00,
+      "parcelamento": null,
+      "imagem": "https://acdn.mitiendanube.com/stores/849/092/products/111-87a81690b1f72809e416753585900068-640-0.webp",
+      "categoria_id": 6
+    },
+    {
+      "id": 3,
+      "nome": "Kit 5 Géis da Real Love",
+      "preco_original": 90.00,
+      "preco_desconto": 79.90,
+      "parcelamento": "3x de R$27,60 sem juros",
+      "imagem": "https://images-americanas.b2w.io/produtos/4514014573/imagens/kit-5-und-unha-gel-fibra-sculpting-gel-real-love-uv-led/4514014573_1_large.jpg",
+      "categoria_id": 5
+    },
+    {
+      "id": 4,
+      "nome": "Kit Iniciante Vòlia Nail Designer - Unha Fibra De Vidro",
+      "preco_original": 849.90,
+      "preco_desconto": 799.90,
+      "parcelamento": "5x R$159,90 sem juros",
+      "imagem": "https://http2.mlstatic.com/D_NQ_NP_789531-MLB70775906302_072023-O.webp",
+      "categoria_id": 5
+    }
+  ]
+}
