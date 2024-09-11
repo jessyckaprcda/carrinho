@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Carrinho de Compras</title>
+    <style>
+        .carrinho-container {
+            margin: 50px auto;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .produto-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .produto-item img {
+            width: 100px;
+            height: auto;
+        }
+
+        .produto-info {
+            flex-grow: 1;
+            text-align: left;
+            margin-left: 15px;
+        }
+
+        .produto-preco {
+            font-size: 1.25em;
+            color: green;
+        }
+
+        .produto-quantidade input {
+            width: 60px;
+            text-align: center;
+        }
+
+        .produto-remove {
+            color: red;
+            cursor: pointer;
+        }
+
+        .total-compra {
+            font-size: 1.5em;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg" style="background-color: #EF4D5C;">
+        <div class="container-fluid">
+          <a class="navbar-brand">SITE DE VENDAS</a>
+        </div>
+    </nav>
+
+    <div class="container carrinho-container" id="carrinho-container">
+        <h2>Carrinho de Compras</h2>
+        <div id="produtos-carrinho"></div>
+        <div class="total-compra" id="total-compra"></div>
+        <a href="site_de_vendas.html" class="btn btn-primary mt-3" style="background-color: #EF4D5C;">Continuar Comprando</a>
+    </div>
+
+    <script>
+        function carregarCarrinho() {
+            const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            const produtosCarrinho = document.getElementById('produtos-carrinho');
+            const totalCompra = document.getElementById('total-compra');
+
+            if (carrinho.length === 0) {
+                produtosCarrinho.innerHTML = '<p>O carrinho está vazio.</p>';
+                totalCompra.textContent = '';
+                return;
+            }
+
+            let total = 0;
+            produtosCarrinho.innerHTML = '';
+
+            carrinho.forEach(produto => {
+                if (!produto.quantidade) produto.quantidade = 1;
+                const produtoHTML = `
+                    <div class="produto-item">
+                        <img src="${produto.imagem}" alt="${produto.nome}">
+                        <div class="produto-info">
+                            <div>${produto.nome}</div>
+                            <div class="produto-preco">R$${produto.preco_desconto.toFixed(2)}</div>
+                        </div>
+                        <div class="produto-quantidade">
+                            <input type="number" min="1" value="${produto.quantidade}" onchange="atualizarQuantidade(${produto.id}, this.value)">
+                        </div>
+                        <div class="produto-remove" onclick="removerProduto(${produto.id})">Remover</div>
+                    </div>
+                `;
+                produtosCarrinho.innerHTML += produtoHTML;
+                total += produto.preco_desconto * produto.quantidade;
+            });
+
+            totalCompra.textContent = `Total: R$${total.toFixed(2)}`;
+        }
+
+        function atualizarQuantidade(produtoId, novaQuantidade) {
+            let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            carrinho = carrinho.map(produto => {
+                if (produto.id === produtoId) {
+                    produto.quantidade = parseInt(novaQuantidade); 
+                }
+                return produto;
+            });
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+            carregarCarrinho(); 
+        }
+
+        function removerProduto(produtoId) {
+            let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            carrinho = carrinho.filter(produto => produto.id !== produtoId);
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+            carregarCarrinho();
+        }
+
+        document.addEventListener('DOMContentLoaded', carregarCarrinho);
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
